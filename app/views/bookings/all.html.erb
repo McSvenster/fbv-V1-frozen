@@ -1,0 +1,43 @@
+<article>
+<table class="liste">
+  <thead>
+    <tr>
+      <th><%= t(:company) %></th>
+      <th><%= t(:dname) %></th>
+      <th><%= t(:ddate) %></th>
+      <th><%= t(:lsdate ) %></th>
+      <th><%= t(:bdate ) %></th>
+      <th><%= t(:wludate ) %></th>
+      <th><%= t(:deliveryoption ) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <% if booking.wludate <= booking.bdate.to_datetime  + 1.days + 9.hours + 59.minutes %>
+        <tr class="wichtig" style="visibility:visible;">
+      <% else %>
+        <tr>
+      <% end %>
+        <td><%= booking.company.name %></td>
+        <td><%= booking.vname %> <%= booking.nname %></td>
+        <td><%= l(booking.ddate, format: :datetime) %></td>
+        <td><%= l(booking.lsdate, format: :datetime) %></td>
+        <td><%= link_to l(booking.bdate), all_path(datum: booking.bdate) %>
+          <% if booking.btime %>
+            , <%= l(booking.btime) %>
+          <% end %></td>
+        <td><%= l(booking.wludate, format: :datetime) %></td>
+        <td><%= booking.deliveryoption.deloption %></td>
+        <td class="functions">
+          <%= link_to 'Edit', edit_booking_path(booking), class: "no_print" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to("Liste drucken", "javascript:print()", class: "no_print") %>
+</article>

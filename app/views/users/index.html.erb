@@ -1,0 +1,44 @@
+<table class="liste">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Firma</th>
+      <th>Telefon</th>
+      <th>E-Mail</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th class="interim">Bestatter</th>
+      <th class="interim" colspan="5"></th>
+    </tr>
+    <% @bestatter.each do |user| %>
+      <tr>
+        <td class="interim"></td>
+        <td><%= link_to "#{user.nname}, #{user.vname}", edit_user_path(user) %></td>
+        <td><%= user.company.name %></td>
+        <td><%= user.tel %></td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th class="interim">Planer</th>
+      <th class="interim" colspan="5"></th>
+    </tr>
+    <% @planer.each do |user| %>
+      <tr>
+        <td class="interim"></td>
+        <td><%= link_to "#{user.nname}, #{user.vname}", edit_user_path(user) %></td>
+        <td><%= user.company.name %></td>
+        <td><%= user.tel %></td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'neuer Bestatter / Planer', new_user_path %>

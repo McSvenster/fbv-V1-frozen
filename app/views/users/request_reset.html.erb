@@ -1,0 +1,9 @@
+<h2>Passwort-Reset</h2>
+<p>Bitte geben Sie die registrierte E-Mail-Adresse an. Ihnen wird dann ein Link zum Zürücksetzen des Passworts zugeschickt.
+<div class="form-box">
+<%= form_tag request_reset_users_path do %>
+	<label><%= t("activerecord.attributes.user.email") %></label>
+	<%= text_field_tag :email, params[:email] %></p>
+  <p><%= submit_tag "Link anfordern" %></p>
+<% end %>
+</div>

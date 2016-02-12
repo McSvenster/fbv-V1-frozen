@@ -1,0 +1,35 @@
+// Place all the styles related to the Bookings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#ddata {
+  width: 860px;
+  border: 6px solid black;
+  margin: 12px 0;
+}
+
+#ldata {
+  width: 860px;
+  margin: 24px 0;
+  td {
+    padding-top: 4px;
+  }
+  .wichtig {
+  }
+}
+
+#del_info {
+  color: red;
+}
+
+.submit {
+  padding-top: 24px;
+}
+@media print {
+  @page{
+    size: landscape
+  }
+  #content {
+    width: 298mm;
+  }
+}

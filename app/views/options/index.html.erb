@@ -1,0 +1,31 @@
+<header class="inhalt">
+  <h2>Grundeinstellungen</h2>
+  <p>angezeigte Tage: <%= @defaults.bdates %><br>
+    buchbare slots pro Tag: <%= @defaults.slots %></p>
+</header>
+
+<article class="inhalt">
+  <h2>Ausnahmen</h2>
+  <aside class="submenu">
+    <%= link_to t(:new_option), new_option_path %>
+  </aside>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th><%= t(:slots) %></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @options.each do |option| %>
+        <tr>
+          <td><%= l(option.date) + " (#{dayname(option.date.wday)})" %></td>
+          <td><%= option.slots %></td>
+          <td><%= link_to 'bearbeiten', edit_option_path(option) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

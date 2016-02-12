@@ -1,0 +1,9 @@
+<p>
+  <strong>Datum:</strong>
+  <%= l(@option.date) %><br>
+  <strong>Slots:</strong>
+  <%= @option.slots %>
+</p>
+
+<%= link_to 'Edit', edit_option_path(@option) %> |
+<%= link_to 'Back', options_path %>

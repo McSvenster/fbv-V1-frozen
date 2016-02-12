@@ -1,0 +1,37 @@
+<p>
+  <strong>User:</strong>
+  <%= @booking.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @booking.name %>
+</p>
+
+<p>
+  <strong>Ddate:</strong>
+  <%= @booking.ddate %>
+</p>
+
+<p>
+  <strong>Ldate:</strong>
+  <%= @booking.bdate %>
+</p>
+
+<p>
+  <strong>Bdate:</strong>
+  <%= @booking.bdate %>
+</p>
+
+<p>
+  <strong>Ldate:</strong>
+  <%= @booking.wludate %>
+</p>
+
+<p>
+  <strong>Auslieferung:</strong>
+  <%= @booking.deliveryoption.deloption %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

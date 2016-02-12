@@ -1,0 +1,25 @@
+<%= form_for(@option) do |f| %>
+  <% if @option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @option.errors.count %> Fehler</h2>
+
+      <ul>
+      <% @option.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_field :date, placeholder: "TT.MM.JJJJ", value: (@option.date.nil? ? nil : l(@option.date)) %>
+  </div>
+  <div class="field">
+    <%= f.label :slots %><br>
+    <%= f.number_field :slots %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

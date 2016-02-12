@@ -1,0 +1,21 @@
+<%  @user.role == 2 ? rolle = "Planer" : rolle = "Bestatter" %>
+<article class="vcard">
+<h2><%=  @user.vname + " " +  @user.nname %></h2>
+<aside class="subheading">(Funktion: <%= rolle %> )</aside>
+<p>
+  <%= @user.company.name %>
+</p>
+
+<p>
+  <%= @user.strasse + " " + @user.hnr %><br>
+  <%= @user.plz + " " + @user.ort %>
+</p>
+
+<p>
+  <strong>Tel:</strong> <%= @user.tel %><br>
+  <strong>E-Mail:</strong> <%= @user.email %>
+</p>
+</article>
+
+<%= link_to("Datensatz zum #{rolle} drucken | ", "javascript:print()", class: "no_print") %>
+<%= link_to 'bearbeiten', edit_user_path(@user), class: "no_print" %>

@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
+  username: the_dev
+
+development:
+  <<: *default
+  database: reserve_development
+
+test:
+  <<: *default
+  database: reserve_test
+
+production:
+  <<: *default
+  database: reserve_prod
+  encoding: "utf8"
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  reconnect: true

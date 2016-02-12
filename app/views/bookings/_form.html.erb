@@ -1,0 +1,125 @@
+<%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @booking.errors.count %> Fehler</h2>
+
+      <ul>
+      <% @booking.errors.each do |e,message| %>
+        <% if message == t("activerecord.errors.models.booking.attributes.nname.already_registered") %>
+          <li><%= message %></li>
+        <% else %>
+          <% if message == t("activerecord.errors.models.booking.attributes.wludate.wlu_on_bdate") %>
+            <% @vis = "visibility:visible;" %>
+          <% end %>
+          <li><%= t("activerecord.attributes.booking.#{e}") %> : <%= message %></li>
+        <% end %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% @vis = "visibility:visible;" if @booking.approved == true %>
+
+  <% if @current_user.role == 3 %>
+    <h2>Buchung für <%= @booking.company.name %></h2>
+    <%= f.hidden_field :company_id %>
+    <aside class="hinweis">
+      Bitte beachten Sie: Eine Kremation ist nur mit ärztlicher Todesbescheinigung und Kremationsauftrag möglich!
+    </aside>
+  <% else %>
+    <h2>Buchung für: </h2>
+    <%= f.collection_select(:company_id, Company.all, :id, :name) %> (oder erst <%= link_to "neue Firma anlegen?", new_company_path %>)
+  <% end %>
+
+  <table id="ddata">
+  <tr>
+    <th colspan="3">
+      Angaben zum / zur Verstorbenen
+    </th>
+  </tr>
+  <tr>
+    <td class="field" style="width: 340px;">
+      <%= t(:dvname) %><br>
+      <%= f.text_field :vname %>
+    </td>
+    <td class="field">
+      <%= t(:dnname) %><br>
+      <%= f.text_field :nname %>
+    </td>
+    <td class="field">
+      <%= t(:birthdate) %><br>
+      <%= f.date_field :birthdate, placeholder: "dd.mm.YYYY", value: (@booking.birthdate.nil? ? nil : l(@booking.birthdate)) %>
+    </td>
+  </tr>
+  <tr>
+    <td class="field">
+      <%= t(:lwohnort) %><br>
+      <%= f.text_field :lwohnort %>
+    </td>
+    <td colspan="2" class="field">
+      <%= t(:ddate) %><br>
+      <%= f.datetime_select :ddate %>
+    </td>
+  </tr>
+  </table>
+  <table id="ldata">
+  <tr>
+    <th colspan="3">
+      Angaben zur Lieferung
+    </th>
+  </tr>
+  <tr>
+    <td class="field" style="width: 340px;">
+      <%= t(:lsdate) %><br>
+      <%= f.datetime_select :lsdate %>
+    </td>
+    <% if @current_user.is_admin %>
+      <td class="field">
+        <%= t(:bdate) %><br>
+        <%= f.date_select :bdate %>
+      </td>
+      <td>
+        <%= t(:btime) %><br>
+        <%= f.time_field :btime, placeholder: "HH:MM", value: (@booking.btime.nil? ? nil : l(@booking.btime)) %>
+      </td>
+    <% else %>
+      <td class="field" colspan="2">
+        <%= t(:bdate) %><br>
+        <%= l( @booking.bdate ) %>
+        <%= f.hidden_field :bdate %>
+      </td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td class="field">
+      <%= t(:wludate) %><br>
+      <%= f.datetime_select :wludate %>
+    </td>
+    <td  colspan="2" class="field">
+      <aside class="wichtig" style="<%= @vis %>">Ja, ich habe das mit einem Mitarbeiter des Krematoriums abgesprochen.<%= f.check_box :approved %> </aside>
+    </td>
+  </tr>
+  <tr>
+    <td class="field">
+      <%= t(:deliveryoption) %><br>
+      <%= f.collection_select(:deliveryoption_id, Deliveryoption.all, :id, :deloption ) %>
+    </td>
+    <td colspan="2">
+      <aside id="del_info"></aside>
+    </td>
+  </tr>
+  <tr>
+    <td class="submit">
+      <%= f.submit %>
+    </td>
+    <td></td>
+    <td>
+      <% unless current_page?(new_booking_path) %>
+        <%= link_to 'Diese Buchung löschen', @booking, method: :delete, data: { confirm: 'Sind Sie sicher?' }, style: "color:darkred;" %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<% end %>

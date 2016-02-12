@@ -1,0 +1,19 @@
+<p>Guten Tag, <%= @user.vname %> <%= @user.nname %></p>
+  
+<p>
+  Sie erhalten diese Mails, da Sie als Bestatter für die Reservierungsapp des Krematoriums Chur registriert wurden.
+</p>
+<p>
+  Um die Registrierung abzuschliessen und die Reservationsplattform nutzen zu können, setzen Sie sich bitte unter folgendem Link ein eigenes Passwort: <%= link_to t(:reset), reset_url(@user.id, onetimetoken: @user.onetimetoken) %>
+</p>
+<p>
+  Es folgen ein paar wichtige Hinweise für die Eingabe von Kremationsaufträgen:
+  <ul style="list-style: none;">
+    <li>Abholung der Urne durch Angehörige immer Mo - Fr zwischen 10:00 und 11:00 Uhr</li>
+    <li>Soll die Urne noch am Tag der Kremation an die Bestatter abgegeben werden, bitten wir um telefonische Rücksprache!</li>
+    <li>Bei Postversand der Urne muss die Anlieferung bis spätestens 10:00 Uhr (Tag der Kremation) erfolgen.</li>
+  </ul>
+</p>
+<p>
+Beste Grüsse
+</p>

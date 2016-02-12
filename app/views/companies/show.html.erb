@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+
+<p>
+  <strong>Strasse:</strong>
+  <%= @company.strasse %>
+</p>
+
+<p>
+  <strong>Hnr:</strong>
+  <%= @company.hnr %>
+</p>
+
+<p>
+  <strong>Plz:</strong>
+  <%= @company.plz %>
+</p>
+
+<p>
+  <strong>Ort:</strong>
+  <%= @company.ort %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @company.tel %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @company.email %>
+</p>
+
+<%= link_to 'bearbeiten', edit_company_path(@company) %>

@@ -1,0 +1,14 @@
+.bundle
+.hg*
+.ruby-version
+log
+config/secrets.yml
+db/*
+!db/migrate
+public/.htaccess
+tmp
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

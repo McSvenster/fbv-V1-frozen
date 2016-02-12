@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Liste der Bestattungsunternehmen</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Anschrift</th>
+      <th>Telefon</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= link_to company.name, company %></td>
+        <td><%= "#{company.strasse} #{company.hnr}, #{company.plz} #{company.ort}" %></td>
+        <td><%= company.tel %></td>
+        <td><%= company.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neues Unternehmen', new_company_path %>

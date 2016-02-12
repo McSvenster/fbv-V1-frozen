@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reserve</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="content">
+    <header class="main">
+      <aside class="right">
+        <%= (button_to "Abmelden", logout_path, class: "no_print") if @current_user %>
+      </aside>
+      <h1>Buchungsplanung der Feuerbestattungen</h1>
+      <aside class="menu">
+        <ul>
+        <% if @current_user %>
+          <li><%= link_to t(:home), root_path %></li>
+          <li><%= link_to t(:bookings), all_path %></li>
+          <% if @current_user.is_admin %>
+            <li><%= link_to t(:companies), companies_path %></li>
+            <li><%= link_to t(:users), users_path %></li>
+            <li><%= link_to "Einstellungen / Ausnahmen", options_path %></li>
+          <% end %>
+        <% else %>
+          <li><%= link_to t(:reset), request_reset_users_path %></li>
+        <% end %>
+        </ul>
+      </aside>
+    </header>
+    <article class="main">
+    <% if @deletables_count != nil && @deletables_count > 0 %>
+    <aside id="cleanup_bookings" class="right">
+        Es gibt <%= t(:deletable, count: @deletables_count) %>.
+        <%= button_to "alte Buchungen löschen", cleanup_path %>
+      </aside>
+      <% end %>
+      <h2><%= @title ||= "" %></h2>
+      <% flash.each do |name, msg| %> <%= content_tag :div, msg, id: name %> <% end %>
+    </article>
+    
+    <section class="main">
+      <%= yield %>
+    </section>
+    <footer class="no_print">
+      <p>Bei Fragen kontaktieren Sie uns bitte unter der Telefonnummer: +41 81 252 44 62</p>
+    </footer>
+  </div>
+</body>
+</html>
