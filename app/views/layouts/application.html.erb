@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Reserve</title>
+  <title>Buchungssystem FBV Chur</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,7 +12,7 @@
       <aside class="right">
         <%= (button_to "Abmelden", logout_path, class: "no_print") if @current_user %>
       </aside>
-      <h1>Buchungsplanung der Feuerbestattungen</h1>
+      <h1>Buchungssystem des Feuerbestattungsvereins Chur</h1>
       <aside class="menu">
         <ul>
         <% if @current_user %>
