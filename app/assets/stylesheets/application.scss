@@ -39,6 +39,11 @@ body {
   }
   footer {
     padding: 4px 24px;
+    .dezent {
+      font-size: small;
+      text-decoration: none;
+      color: $header_backgroundcolor;
+    }
   }
 }
 p, ol, ul, td, .right {

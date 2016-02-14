@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :logged_in, :current_user
+  skip_before_filter  :logged_in, :current_user, only: :about
+
+  def about
+    
+  end
 
   def dayname(d)
     names = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]

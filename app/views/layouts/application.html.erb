@@ -24,7 +24,11 @@
             <li><%= link_to "Einstellungen / Ausnahmen", options_path %></li>
           <% end %>
         <% else %>
-          <li><%= link_to t(:reset), request_reset_users_path %></li>
+          <% if current_page?(:about) %>
+            <li><%= link_to t(:home), root_path %></li>
+          <% else %>
+            <li><%= link_to t(:reset), request_reset_users_path %></li>
+          <% end %>
         <% end %>
         </ul>
       </aside>
@@ -44,6 +48,7 @@
       <%= yield %>
     </section>
     <footer class="no_print">
+      <p class="right"><%= link_to "about", about_path, class: "dezent" %></p>
       <p>Bei Fragen kontaktieren Sie uns bitte unter der Telefonnummer: +41 81 252 44 62</p>
     </footer>
   </div>

@@ -12,6 +12,12 @@ de:
         nname: "Nachname"
         vname: "Vorname"
         wludate: "Lieferdatum der Urne"
+      company:
+        email: "E-Mail"
+        hnr: "Hausnummer"
+        plz: "Postleitzahl"
+        role: "Funktion"
+        tel: "Telefon"
       option:
         date: "Datum"
       user:
