@@ -81,13 +81,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "tux83.hoststar.ch",
+    address: ENV['APP_SMTP_SERVER'],
     authentication: 'login',
-    user_name: "reserve@privat.koesling.it",
-    password: ENV['KIT_SMTP_PASSWORD'],
-    openssl_verify_mode: 'none'
+    user_name: ENV['APP_SMTP_USER'],
+    password: ENV['APP_SMTP_PASSWORD']
   }
-  host = 'http://reserve-test.elasticbeanstalk.com'
+  host = 'http://buchungssystem-fbv.us-west-2.elasticbeanstalk.com/'
   config.action_mailer.default_url_options = {
     host: host,
   }
